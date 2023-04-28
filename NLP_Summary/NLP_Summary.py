@@ -10,8 +10,13 @@ model = PegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
 tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
 
 # Load the saved machine learning model
-with open("model1.pkl", "rb") as f:
-    ml_model = pickle.load(f)
+try:
+    with open("model1.pkl", "rb") as f:
+        ml_model = pickle.load(f)
+except (FileNotFoundError, pickle.UnpicklingError) as e:
+    print("Error loading the model from the pickle file:", e)
+    # handle the error here, e.g. by loading a default model
+    ml_model = None
 
 # Define the title of the app
 st.title("PDF Summary Extractor")
