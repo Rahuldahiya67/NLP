@@ -2,15 +2,18 @@ import streamlit as st
 import pdfminer.high_level
 import torch
 from transformers import PegasusTokenizer, PegasusForConditionalGeneration
-import pickle
 
 # Load pre-trained model and tokenizer
 model = PegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
 tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
 
 # Load the saved machine learning model
-with open("model1.pkl", "rb") as f:
-    ml_model = pickle.load(f)
+def load_model():
+    model = torch.load("model.pt")
+    model.eval()
+    return model
+
+ml_model = load_model()
 
 # Define a function to extract summary from a PDF file
 def extract_summary(pdf_file):
