@@ -7,8 +7,6 @@
 # Import libraries
 import spacy
 
-get_ipython().system('pip install pdfminer.six  #pdfminer.six is a tool used for extracting text from PDF files.')
-
 from pdfminer.high_level import extract_text #the "extract_text" function is used to extract the text from a PDF file and then pass it to a spaCy object for further processing.
 '''
 "pdfminer.high_level" is a module in the pdfminer library that provides 
