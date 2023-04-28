@@ -1,0 +1,21 @@
+import torch
+from transformers import PegasusTokenizer, PegasusForConditionalGeneration
+from pdfminer.high_level import extract_text
+
+# Load pre-trained model and tokenizer
+model = PegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
+tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
+
+# Define pdf file path
+pdf_file = "C:/Users/hp/Downloads/climate_change.pdf"
+
+# Extract text from pdf file
+text = extract_text(pdf_file)
+# Tokenize text and generate summary
+inputs = tokenizer(text, padding="max_length", truncation=True, max_length=512, return_tensors="pt")
+# Use max_new_tokens and length_penalty instead of max_length and min_length
+summary_ids = model.generate(inputs["input_ids"], max_new_tokens=512, length_penalty=0.8)
+summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+
+# Print summary
+print(summary)
