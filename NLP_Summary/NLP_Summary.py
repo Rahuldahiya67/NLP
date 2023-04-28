@@ -13,17 +13,6 @@ tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
 with open("model1.pkl", "rb") as f:
     ml_model = pickle.load(f)
 
-# Define a function to extract summary from a PDF file
-def extract_summary(pdf_file):
-    # Extract text from pdf file
-    text = pdfminer.high_level.extract_text(pdf_file)
-    # Tokenize text and generate summary
-    inputs = tokenizer(text, padding="max_length", truncation=True, max_length=512, return_tensors="pt")
-    summary_ids = model.generate(inputs["input_ids"])
-    summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-    # Return the summary
-    return summary
-
 # Define the title of the app
 st.title("PDF Summary Extractor")
 
