@@ -12,7 +12,7 @@ if not spacy.util.is_package("en_core_web_sm"):
     download("en_core_web_sm")
 
 # Set spaCy model path using environment variable
-os.environ["SPACY_DATA"] = "/path/to/spacy/models" # Replace with the actual path where the models are stored on your system
+os.environ["SPACY_DATA"] = "NLP_information_extraction/model.pkl" # Replace with the actual path where the models are stored on your system
 
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
