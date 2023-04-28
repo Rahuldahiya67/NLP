@@ -2,3 +2,5 @@ torch
 transformers
 sentencepiece
 pdfminer.six
+pickle
+streamlit
