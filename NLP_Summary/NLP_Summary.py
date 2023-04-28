@@ -10,7 +10,7 @@ model = PegasusForConditionalGeneration.from_pretrained("google/pegasus-xsum")
 tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
 
 # Load the saved machine learning model
-with open("model.pkl", "rb") as f:
+with open("model1.pkl", "rb") as f:
     ml_model = pickle.load(f)
 
 # Define a function to extract summary from a PDF file
