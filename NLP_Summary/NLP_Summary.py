@@ -1,4 +1,3 @@
-# Import libraries
 import streamlit as st
 import pdfminer.high_level
 import torch
