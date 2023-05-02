@@ -30,23 +30,73 @@ with open('model.pkl', 'wb') as f:
     pickle.dump(naivebayes, f)
 
 # Define the Streamlit app
-st.header('Demo')
-input_text = st.text_area("Please enter the text", value="")
-if st.button("Check"):
+st.set_page_config(page_title="BBC News Category Classification", page_icon=":newspaper:", layout="wide")
+st.title("BBC News Category Classification")
+
+input_text = st.text_area("Enter the news headline", value="", height=100)
+if st.button("Check Category"):
     input_text_transformed = vector.transform([input_text]).toarray()
     prediction = naivebayes.predict(input_text_transformed)[0]
     prediction_mapping = {
-        0: 'TECH',
-        1: 'BUSINESS',
-        2: 'SPORTS',
-        3: 'ENTERTAINMENT',
-        4: 'POLITICS',
-        5: 'HEALTH',
-        6: 'EDUCATION',
-        7: 'ENVIRONMENT',
-        8: 'TRAVEL',
-        9: 'FOOD',
-        10: 'FASHION'
+        0: 'Tech',
+        1: 'Business',
+        2: 'Sports',
+        3: 'Entertainment',
+        4: 'Politics',
+        5: 'Health',
+        6: 'Education',
+        7: 'Environment',
+        8: 'Travel',
+        9: 'Food',
+        10: 'Fashion'
     }
     result = prediction_mapping[prediction]
-    st.write(f"Predicted category: {result}")
+    st.success(f"Predicted category: {result}")
+
+# Add some CSS styles to make the app look more attractive
+st.markdown(
+"""
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8;
+}
+h1, h2, h3 {
+    font-weight: bold;
+    color: #333;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #555;
+}
+.success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+</style>
+""",
+unsafe_allow_html=True)
