@@ -53,6 +53,8 @@ if st.button("Check Category"):
     result = prediction_mapping[prediction]
     st.success(f"Predicted category: {result}")
 
+st.sidebar.text("Developed by Rahul")
+
 # Add some CSS styles to make the app look more attractive
 st.markdown(
 """
