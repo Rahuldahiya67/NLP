@@ -14,17 +14,30 @@ os.environ["SPACY_DATA"] = "NLP_information_extraction/model.pkl" # Replace with
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
 
-# Set PDF file path
-pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
+# Set up some CSS styles
+main_css = """
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+"""
 
-# If PDF file is uploaded
-if pdf_file is not None:
-    # Extract text from PDF file
-    text = extract_text(pdf_file)
+title_css = """
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+"""
+
+upload_css = """
+    padding: 1rem;
+    border: 2px dashed #ccc;
+    text-align: center;
+"""
+
+# Define the Streamlit app
+def app():
+    # Set the page title and add some CSS styles
+    st.set_page_config(page_title="PDF Entity Extraction", page_icon="📚")
+    st.markdown(f'<style>{main_css}</style>', unsafe_allow_html=True)
     
-    # Create a spaCy object from the text
-    doc = nlp(text)
-
-    # Display entities in Streamlit
-    for ent in doc.ents:
-        st.write(ent.text, ent.label_)
+    # Add a title
+    st.markdown('<h1 class="title" style="{}
