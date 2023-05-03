@@ -1,11 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
+import os
 import spacy
-from spacy.cli import download
 import streamlit as st
 from pdfminer.high_level import extract_text
-import os
+from spacy.cli import download
 
 # Download spaCy model if not installed
 if not spacy.util.is_package("en_core_web_sm"):
@@ -31,8 +28,3 @@ if pdf_file is not None:
     # Display entities in Streamlit
     for ent in doc.ents:
         st.write(ent.text, ent.label_)
-
-
-
-
-
