@@ -1,4 +1,3 @@
 spacy
 streamlit
 pdfminer.six
-pip == 23.1.2
