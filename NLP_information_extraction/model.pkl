@@ -34,13 +34,14 @@ text = extract_text(pdf_file)
 doc = nlp(text)
 
 # Loop through the entities in the doc object
+cardinal_count = 0
 for ent in doc.ents:
   # Print the text and label of each entity
   print(ent.text, ent.label_)
-'''
-When we loop through the entities in the doc object using a for loop, 
-we are essentially iterating over a collection of named entities that 
-are present in the document. For each iteration of the loop, the ent 
-variable represents a single named entity, which has two properties 
-that we can access: ent.text and ent.label_.
-'''
+  
+  # Check if entity is a cardinal
+  if ent.label_ == "CARDINAL":
+      cardinal_count += 1
+
+# Print the total count of cardinal entities
+print("Total count of cardinal entities:", cardinal_count)
