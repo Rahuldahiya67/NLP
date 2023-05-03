@@ -35,3 +35,53 @@ if pdf_file is not None:
     # Display entities in Streamlit
     for ent in doc.ents:
         st.write(ent.text, ent.label_)
+        
+st.sidebar.text("Developed by Rahul")
+
+# Add some CSS styles to make the app look more attractive
+st.markdown(
+"""
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8;
+}
+h1, h2, h3 {
+    font-weight: bold;
+    color: #333;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #555;
+}
+.success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+</style>
+""",
+unsafe_allow_html=True)
