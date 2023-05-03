@@ -34,11 +34,11 @@ text = extract_text(pdf_file)
 doc = nlp(text)
 
 # Loop through the entities in the doc object
-cardinal_count = 0
 for ent in doc.ents:
-
-  # Print the text and label of each entity
-  print(ent.text, ent.label_)
+    # Check if the entity is not a cardinal value
+    if ent.label_ != "CARDINAL":
+        # Print the text and label of each non-cardinal entity
+        print(ent.text, ent.label_)
   
   # Check if entity is a cardinal
   if ent.label_ == "CARDINAL":
