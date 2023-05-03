@@ -36,6 +36,7 @@ doc = nlp(text)
 # Loop through the entities in the doc object
 cardinal_count = 0
 for ent in doc.ents:
+
   # Print the text and label of each entity
   print(ent.text, ent.label_)
   
