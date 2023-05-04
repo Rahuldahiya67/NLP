@@ -33,7 +33,7 @@ if pdf_file is not None:
     # Display entities in Streamlit
     for ent in doc.ents:
         if ent.label_ != "CARDINAL":
-            st.write(ent.text, ent.label_))
+            st.write(ent.text, ent.label_)
         
 st.sidebar.text("Developed by Rahul")
 
