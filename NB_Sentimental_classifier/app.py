@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import pickle
-review = pd.read_csv('reviews.csv')
+review = pd.read_csv('NB_Sentimental_classifier/reviews.csv')
 review = review.rename(columns = {'text': 'review'}, inplace = False)
 review.head()
 X=review.review
