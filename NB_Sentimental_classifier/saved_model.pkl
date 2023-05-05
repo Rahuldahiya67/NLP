@@ -1,45 +1,12 @@
-import pandas as pd
 import pickle
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import classification_report
 
-# Read the dataset
-review = pd.read_csv('reviews.csv')
-review = review.rename(columns={'text': 'review', 'label': 'polarity'})
-review.head()
+# train and fit the model
+vector = CountVectorizer(stop_words='english', lowercase=False)
+vector.fit(X_train)
+X_train_transformed = vector.transform(X_train)
+naivebayes = MultinomialNB()
+naivebayes.fit(X_train_transformed, y_train)
 
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(review['review'], review['polarity'], test_size=0.4, random_state=42)
-
-# Define the vectorizer
-vectorizer = CountVectorizer(stop_words='english')
-
-# Fit the vectorizer on the training data
-vectorizer.fit(X_train)
-
-# Transform the training and testing data
-X_train_transformed = vectorizer.transform(X_train)
-X_test_transformed = vectorizer.transform(X_test)
-
-# Train the model
-naive_bayes = MultinomialNB()
-naive_bayes.fit(X_train_transformed, y_train)
-
-# Evaluate the model on the testing data
-y_pred = naive_bayes.predict(X_test_transformed)
-print(classification_report(y_test, y_pred))
-
-# Save the model to a file
+# save the model
 with open('saved_model.pkl', 'wb') as f:
-    pickle.dump(naive_bayes, f)
-
-# Load the model from a file
-with open('saved_model.pkl', 'rb') as f:
-    loaded_model = pickle.load(f)
-
-# Use the loaded model to predict the sentiment of a new review
-new_review = ['This product is amazing!']
-new_review_transformed = vectorizer.transform(new_review)
-print(loaded_model.predict(new_review_transformed)[0])
+    pickle.dump((vector, naivebayes), f)
