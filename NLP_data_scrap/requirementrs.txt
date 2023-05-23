@@ -1,2 +1,4 @@
-newspaper3k
-nltk
+newspaper3k==0.2.8
+streamlit==0.84.2
+pathlib==1.0.1
+
